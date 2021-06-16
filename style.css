@@ -96,6 +96,11 @@ input[type='number'] {
   cursor: pointer;
 }
 
+.btn-focus,
+.deleta-btn-focus {
+  outline: 0;
+}
+
 .list {
   list-style-type: none;
   padding: 0;
@@ -128,4 +133,15 @@ input[type='number'] {
   font-size: 20px;
   line-height: 20px;
   padding: 2px 5px;
+  position: absolute;
+  top: 50%;
+  left: 0;
+  transform: translate(-100%, -50%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  cursor: pointer;
+}
+
+.list li:hover .delete-btn {
+  opacity: 1;
 }
