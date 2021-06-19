@@ -9,7 +9,7 @@ const amount = document.getElementById('amount');
 const dummyTransactions = [
     { Id : 1, text: 'Flower', amount: -20},
     { Id : 2, text: 'Salary', amount: 500},
-    { Id : 3, text: 'Book', amount: -20},
+    { Id : 3, text: 'Book', amount: -30},
     { Id : 4, text: 'Camera', amount: -120}
 ]
 
@@ -34,12 +34,22 @@ function addTransactionDOM(transaction){
     list.appendChild(item);
 }
 
+//Update Values
+
+function updateValues(){
+    const amounts = transactions.forEach(transaction => {
+        console.log(transaction.amount);
+    })
+}
+
 //Init app
 
 function init(){
     list.innerHTML = ' ';
 
     transactions.forEach(addTransactionDOM);
+
+    updateValues();
 }
 
 init()
