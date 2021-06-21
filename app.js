@@ -20,14 +20,7 @@ const localStorageTransactions = JSON.parse(localStorage.getItem('transactions')
 let transactions = localStorage.getItem('transactions') != 'null' ? localStorageTransactions : [];
 
 
-//Set item to local storage
-
-function updateLocalStorage(){
-    localStorage.setItem('transactions', JSON.stringify(transactions));
-}
-
-
-let transactions = dummyTransactions;
+// let transactions = dummyTransactions;
 
 //Add new transaction
 
@@ -44,24 +37,18 @@ function addTransaction(e){
         };
 
     transactions.push(transaction);
+
     addTransactionDOM(transaction);
 
     updateValues();
+
+    updateLocalStorage();
 
     text.value = '';
     amount.value = '';
 
     }
 }
-
-//Remove transaction by ID
-
-function removeTransaction(id){
-    transactions = transactions.filter(transactions.filter(transaction => transaction.id !== id));
-
-    init();
-}
-
 
 //Generate ID
 
@@ -83,7 +70,7 @@ function addTransactionDOM(transaction){
     item.classList.add(transaction.amount < 0 ? 'minus' : 'plus');
 
     item.innerHTML = `
-    ${transaction.text} <span>${sign}${Math.abs(transaction.amount)}</span> <button class="delete-btn"></button>
+    ${transaction.text} <span>${sign}${Math.abs(transaction.amount)}</span> <button class="delete-btn" onClick="removeTransaction(${transaction.id})">x</button>
     `;
 
     list.appendChild(item);
@@ -109,10 +96,26 @@ function updateValues(){
 
 }
 
+//Remove transaction by ID
+
+function removeTransaction(id){
+    transactions = transactions.filter(transaction => transaction.id !== id);
+
+    updateLocalStorage();
+
+    init();
+}
+
+//Set item to local storage
+
+function updateLocalStorage(){
+    localStorage.setItem('transactions', JSON.stringify(transactions));
+}
+
 //Init app
 
 function init(){
-    list.innerHTML = ' ';
+    list.innerHTML = '';
 
     transactions.forEach(addTransactionDOM);
 
