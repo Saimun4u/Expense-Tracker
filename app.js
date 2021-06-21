@@ -6,21 +6,25 @@ const form = document.getElementById('form');
 const text = document.getElementById('text');
 const amount = document.getElementById('amount');
 
-const dummyTransactions = [
-    { Id : 1, text: 'Flower', amount: -20},
-    { Id : 2, text: 'Salary', amount: 500},
-    { Id : 3, text: 'Book', amount: -30},
-    { Id : 4, text: 'Camera', amount: -120}
-]
+// const dummyTransactions = [
+//     { Id : 1, text: 'Flower', amount: -20},
+//     { Id : 2, text: 'Salary', amount: 500},
+//     { Id : 3, text: 'Book', amount: -30},
+//     { Id : 4, text: 'Camera', amount: -120}
+// ]
 
 // Get item from local storage
 
-// const localStorageTransactions = JSON.parse(localStorage.getItem('transactions'));
+const localStorageTransactions = JSON.parse(localStorage.getItem('transactions'));
 
-// let transactions = localStorage.getItem('transactions') != 'null' ? localStorageTransactions : [];
+let transactions = localStorage.getItem('transactions') != 'null' ? localStorageTransactions : [];
+
 
 //Set item to local storage
 
+function updateLocalStorage(){
+    localStorage.setItem('transactions', JSON.stringify(transactions));
+}
 
 
 let transactions = dummyTransactions;
